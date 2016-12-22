@@ -11,10 +11,23 @@
 
 @interface PDKeyChain : NSObject
 
-+ (void)keyChainSave:(NSString *)service;
+/**
+ *  存储字符串到 KeyChain
+ *
+ *  @param service NSString
+ */
++ (void)keyChainSave:(NSString *)string;
 
+/**
+ *  从 KeyChain 中读取存储的字符串
+ *
+ *  @return NSString
+ */
 + (NSString *)keyChainLoad;
 
+/**
+ *  删除 KeyChain 信息
+ */
 + (void)keyChainDelete;
 
 @end

@@ -17,15 +17,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // test
+    [self checkKeyChain];
+}
+
+- (void)checkKeyChain {
     if (![PDKeyChain keyChainLoad]) {
-        NSLog(@"keyChain load fail");
-        [PDKeyChain keyChainSave:[[NSUUID UUID]UUIDString]];
-        NSLog(@"keyChain save success");
+        NSLog(@"keyChain check: exist");
     }else {
-        NSLog(@"keyChainLoad: %@ ",[PDKeyChain keyChainLoad]);
+        NSLog(@"keyChain check: absent");
     }
 }
 
+- (IBAction)save:(UIButton *)sender {
+    [PDKeyChain keyChainSave:[[NSUUID UUID]UUIDString]];
+    NSLog(@"keyChain save success");
+}
+
+- (IBAction)load:(UIButton *)sender {
+    if (![PDKeyChain keyChainLoad]) {
+        NSLog(@"keyChain load fail");
+    }else {
+        NSLog(@"keyChain load success: %@ ",[PDKeyChain keyChainLoad]);
+    }
+}
+
+- (IBAction)delete:(UIButton *)sender {
+    [PDKeyChain keyChainDelete];
+    if (![PDKeyChain keyChainLoad]) {
+        NSLog(@"keyChain delete success ");
+    }
+}
 
 @end

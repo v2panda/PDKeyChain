@@ -13,9 +13,9 @@ static NSString * const kPDKeyChainKey = @"com.xxx.keychainKey";
 
 @implementation PDKeyChain
 
-+ (void)keyChainSave:(NSString *)service {
++ (void)keyChainSave:(NSString *)string {
     NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
-    [tempDic setObject:service forKey:kPDDictionaryKey];
+    [tempDic setObject:string forKey:kPDDictionaryKey];
     [self save:kPDKeyChainKey data:tempDic];
 }
 
